@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>PlayCity Chat</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Vazirmatn', sans-serif;
+      background: #f0f0f0;
+      direction: rtl;
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100vh;
+    }
+
+    header {
+      font-size: 2em;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff0000;
+    }
+
+    #name-form {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #name-form input[type="text"] {
+      padding: 10px 15px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      width: 60%;
+    }
+
+    #name-form button {
+      background: #ff0000;
+      border: none;
+      color: white;
+      border-radius: 20px;
+      padding: 10px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #name-form button:hover {
+      background: #cc0000;
+    }
+
+    #messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      display: none; /* اول مخفی */
+      flex-direction: column;
+    }
+
+    .message {
+      background: #ffefef;
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .message.user {
+      background: #ffd6d6;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .message .username {
+      font-weight: 700;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+      color: #cc0000;
+    }
+
+    #chat-input {
+      display: none; /* اول مخفی */
+      gap: 10px;
+    }
+
+    #chat-input input[type="text"] {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    #chat-input button {
+      background: #ff0000;
+      border: none;
+      color: white;
+      border-radius: 20px;
+      padding: 12px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #chat-input button:hover {
+      background: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>PlayCity Chat</header>
+
+  <form id="name-form">
+    <input type="text" id="username" placeholder="اسم خود را وارد کنید..." required autofocus />
+    <button type="submit">شروع چت</button>
+  </form>
+
+  <div id="messages"></div>
+
+  <div id="chat-input">
+    <input type="text" id="message-input" placeholder="پیام خود را بنویسید..." />
+    <button id="send-btn">ارسال</button>
+  </div>
+
+  <script>
+    const nameForm = document.getElementById('name-form');
+    const usernameInput = document.getElementById('username');
+    const messagesDiv = document.getElementById('messages');
+    const chatInputDiv = document.getElementById('chat-input');
+    const input = document.getElementById('message-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    let username = '';
+
+    nameForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = usernameInput.value.trim();
+      if(name === '') return;
+      username = name;
+      nameForm.style.display = 'none';
+      messagesDiv.style.display = 'flex';
+      chatInputDiv.style.display = 'flex';
+      input.focus();
+      addSystemMessage(`خوش آمدی، ${username}!`);
+    });
+
+    function addMessage(text, isUser = true) {
+      if (!text.trim()) return;
+      const msg = document.createElement('div');
+      msg.classList.add('message');
+      if (isUser) msg.classList.add('user');
+
+      const nameSpan = document.createElement('div');
+      nameSpan.classList.add('username');
+      nameSpan.textContent = username;
+      msg.appendChild(nameSpan);
+
+      const textNode = document.createTextNode(text);
+      msg.appendChild(textNode);
+
+      messagesDiv.appendChild(msg);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function addSystemMessage(text) {
+      const msg = document.createElement('div');
+      msg.classList.add('message');
+      msg.style.background = '#d0ffd0';
+      msg.style.textAlign = 'center';
+      msg.style.fontWeight = '700';
+      msg.textContent = text;
+      messagesDiv.appendChild(msg);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      addMessage(input.value);
+      input.value = '';
+      input.focus();
+    });
+
+    input.addEventListener('keypress', e => {
+      if (e.key === 'Enter') {
+        sendBtn.click();
+      }
+    });
+  </script>
+
+</body>
+</html>

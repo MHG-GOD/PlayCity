@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>PlayCity Menu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Vazirmatn', sans-serif;
+      background: linear-gradient(to bottom right, #87ceeb, #b0e0e6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .overlay {
+      background: rgba(255, 0, 0, 0.7);
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      min-width: 250px;
+    }
+
+    button {
+      font-size: 2em;
+      padding: 15px 50px;
+      border: none;
+      border-radius: 15px;
+      background: #ff0000;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #cc0000;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <button onclick="window.open('https://discord.com', '_blank')">دیسکورد</button>
+    <button onclick="window.open('https://rubika.ir', '_blank')">روبیکا</button>
+    <button onclick="location.href='chat.html'">چت</button>
+  </div>
+
+</body>
+</html>
