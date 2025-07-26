@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>PlayCity</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      background: linear-gradient(to bottom right, #87ceeb, #b0e0e6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .main-button {
+      font-size: 3em;
+      padding: 15px 40px;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .main-button:hover {
+      background: #ff1a1a;
+      transform: scale(1.1);
+    }
+
+    .links {
+      background-color: #3cb371;
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .links a {
+      background-color: rgba(255, 0, 0, 0.3);
+      color: white;
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      transition: background 0.3s;
+    }
+
+    .links a:hover {
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <button class="main-button" onclick="document.getElementById('section').scrollIntoView({behavior: 'smooth'})">
+      PlayCity
+    </button>
+    <div id="section" class="links">
+      <a href="#">چت</a>
+      <a href="#">دیسکورد</a>
+      <a href="#">روبیکا</a>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
